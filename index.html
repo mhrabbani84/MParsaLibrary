@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>کتابخانه دیجیتال پارسا - فیلترشونده</title>
+<style>
+/* ---------- Local IRANSans webfonts (from ./Fonts/) ---------- */
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('Fonts/IRANSansWeb(NoEn)_UltraLight.woff2') format('woff2'),
+       url('Fonts/IRANSansWeb(NoEn)_UltraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('Fonts/IRANSansWeb(NoEn)_Light.woff2') format('woff2'),
+       url('Fonts/IRANSansWeb(NoEn)_Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('Fonts/IRANSansWeb(NoEn).woff2') format('woff2'),
+       url('Fonts/IRANSansWeb(NoEn).woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('Fonts/IRANSansWeb(NoEn)_Medium.woff2') format('woff2'),
+       url('Fonts/IRANSansWeb(NoEn)_Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('Fonts/IRANSansWeb(NoEn)_Bold.woff2') format('woff2'),
+       url('Fonts/IRANSansWeb(NoEn)_Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {font-family: 'IRANSansWeb', Tahoma, Calibri, Arial, sans-serif; background:#fff; padding:20px; color:#1d1d1d;}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.header h1{margin:0;font-size:1.6rem;color:#1d1d1d}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.controls input[type="search"]{padding:8px 12px;border-radius:8px;border:1px solid #ddd;width:220px}
+.btn{background:#fff;border:1px solid #e0e0e0;padding:8px 12px;border-radius:10px;cursor:pointer;transition:all .18s}
+.btn.active{background:#D00400;color:#fff;border-color:#b30000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;transition:transform .22s, box-shadow .22s}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(0,0,0,0.09)}
+.cover{width:100%;aspect-ratio:2/3;object-fit:cover;background:#f6f6f6}
+.info{padding:12px;display:flex;flex-direction:column;gap:6px}
+.title{font-weight:600;font-size:1rem}
+.meta{color:#555;font-size:0.88rem}
+.footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid #f3f3f3}
+.badge{padding:6px 10px;border-radius:999px;font-size:0.85rem}
+.badge.read{background:#e0f2f1;color:#00796b}
+.badge.unread{background:#fff3e0;color:#ef6c00}
+.badge.reading{background:#e8eaf6;color:#3949ab}
+.fade-in{animation:fadeIn .35s ease both}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (max-width:600px){.controls input[type="search"]{width:140px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>کتابخانه دیجیتال پارسا</h1>
+  <div class="controls">
+    <input type="search" id="search" placeholder="جستجو بر اساس عنوان، نویسنده...">
+    <button class="btn" data-filter="all">همه</button>
+    <button class="btn" data-filter="خوانده شده">خوانده شده</button>
+    <button class="btn" data-filter="در حال خواندن">در حال خواندن</button>
+    <button class="btn" data-filter="خوانده نشده">خوانده نشده</button>
+  </div>
+</div>
+<div id="grid" class="grid"></div>
+
+<!-- Books JSON -->
+<script id="books-data" type="application/json">[{"title": "کتاب ته جدولی ها 1: (راز داورهای خواب آلود)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786008869870.jpg", "isbn": "978-6008869870"}, {"title": "کتاب ته جدولی ها 2: (راز هفت گل به خودی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222040024.jpg", "isbn": "978-6222040024"}, {"title": "کتاب ته جدولی ها 3: (راز دروازه بان شبح مانند)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222040550.jpg", "isbn": "978-6222040550"}, {"title": "کتاب ته جدولی ها 4: (راز چشم شاهین)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222040956.jpg", "isbn": "978-6222040956"}, {"title": "کتاب ته جدولی ها 5: راز سرقت غیر ممکن", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222041458.jpg", "isbn": "978-6222041458"}, {"title": "کتاب ته جدولی ها 6: (راز قلعه ی افسون شده)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222041861.jpg", "isbn": "978-6222041861"}, {"title": "کتاب ته جدولی ها 7: (راز پنالتی نامرئی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222042820.jpg", "isbn": "978-6222042820"}, {"title": "کتاب ته جدولی ها 8: (راز سیرک آتش)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222044015.jpg", "isbn": "978-6222044015"}, {"title": "کتاب ته جدولی‌ها 9: راز بارش شهابی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده شده", "image_path": "Books Images/9786222044237.jpg", "isbn": "978-6222044237"}, {"title": "کتاب ته جدولی ها 10: راز گنج دزدان دریایی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "در حال خواندن", "image_path": "Books Images/9786222046064.jpg", "isbn": "978-6222046064"}, {"title": "کتاب ته جدولی ها 11: معمای روز ساده لوحان", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000", "status": "خوانده نشده", "image_path": "Books Images/9786222047016.jpg", "isbn": "978-6222047016"}]</script>
+
+<script>
+const books = JSON.parse(document.getElementById('books-data').textContent || '[]');
+const grid = document.getElementById('grid');
+const search = document.getElementById('search');
+let activeFilter = 'all';
+
+// تعیین کلاس وضعیت
+function statusClass(s){
+  if(!s) return 'unread';
+  const t = s.replace(/\s+/g,'').toLowerCase();
+  if(t.includes('درحالخواندن') || t.includes('reading')) return 'reading';
+  if(t.includes('خواندهنشده') || t.includes('نخوانده') || t.includes('unread')) return 'unread';
+  if(t.includes('خواندهشده') || t.includes('خوانده') || t.includes('read')) return 'read';
+  return 'unread';
+}
+
+// رندر کارت‌ها
+function renderBooks(list){
+  grid.innerHTML = '';
+  if(!list.length){
+    grid.innerHTML = '<p style="grid-column:1/-1;color:#777">آیتمی یافت نشد.</p>';
+    return;
+  }
+  const frag = document.createDocumentFragment();
+  list.forEach(b=>{
+    const card = document.createElement('article');
+    card.className = 'card fade-in';
+    const img = document.createElement('img');
+    img.className = 'cover';
+    img.onerror = function(){ this.onerror=null; this.src = 'default_cover.png'; }
+    img.src = b.image_path || 'default_cover.png';
+
+    const info = document.createElement('div'); info.className='info';
+    const h = document.createElement('div'); h.className='title'; h.textContent = b.title || '';
+    const m = document.createElement('div'); m.className='meta';
+    let metaText = '';
+    if(b.author) metaText += 'نویسنده: ' + b.author;
+    if(b.translator) metaText += (metaText? ' • ' : '') + 'مترجم: ' + b.translator;
+    if(b.publisher) metaText += (metaText? ' • ' : '') + 'ناشر: ' + b.publisher;
+    m.textContent = metaText;
+
+    const footer = document.createElement('div'); footer.className='footer';
+    const badge = document.createElement('span'); badge.className='badge '+statusClass(b.status);
+    if(statusClass(b.status)==='read') badge.textContent='خوانده شده';
+    else if(statusClass(b.status)==='reading') badge.textContent='در حال خواندن';
+    else badge.textContent='خوانده نشده';
+
+    const price = document.createElement('div'); price.style.fontWeight='600'; price.style.color='#D00400';
+    if(b.price) price.textContent = b.price + ' امتياز';
+
+    footer.appendChild(badge); footer.appendChild(price);
+    info.appendChild(h); info.appendChild(m); info.appendChild(footer);
+
+    card.appendChild(img); card.appendChild(info);
+    frag.appendChild(card);
+  });
+  grid.appendChild(frag);
+}
+
+// فیلتر و جستجو
+function applyFilters(){
+  const q = (search.value || '').trim().toLowerCase();
+  let filtered = books.filter(b=>{
+    if(activeFilter!=='all'){
+      if(!(b.status && b.status.indexOf(activeFilter)!==-1)) return false;
+    }
+    if(q){
+      const hay = ((b.title||'') + ' ' + (b.author||'') + ' ' + (b.publisher||'') + ' ' + (b.translator||'')).toLowerCase();
+      return hay.indexOf(q)!==-1;
+    }
+    return true;
+  });
+  renderBooks(filtered);
+  updateCounters();
+}
+
+// 🔢 به‌روزرسانی شمارنده فیلترها
+function updateCounters(){
+  const counts = { all: books.length, read: 0, reading: 0, unread: 0 };
+  books.forEach(b=>{
+    const st = statusClass(b.status);
+    counts[st] = (counts[st] || 0) + 1;
+  });
+  document.querySelectorAll('.btn').forEach(btn=>{
+    const key = btn.getAttribute('data-filter');
+    let text = btn.textContent.split(' (')[0];
+    let count = 0;
+    if(key === 'all') count = counts.all;
+    else if(key === 'خوانده شده') count = counts.read;
+    else if(key === 'در حال خواندن') count = counts.reading;
+    else if(key === 'خوانده نشده') count = counts.unread;
+    btn.textContent = text + ' (' + count + ')';
+  });
+}
+
+
+// وصل کردن رویدادها
+document.querySelectorAll('.btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.getAttribute('data-filter') || 'all';
+    applyFilters();
+  });
+});
+
+search.addEventListener('input', ()=>{ applyFilters(); });
+
+// شروع
+const defaultCover = 'default_cover.png';
+renderBooks(books);
+updateCounters();
+</script>
+</body>
+</html>

@@ -6,13 +6,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>کتابخانه دیجیتال محمّدپارسا - فیلترشونده</title>
 <style>
+/* load local IRANSansWeb variants (adjust paths / file-names exact as on disk / repo) */
+
+@font-face{
+
+font-family: ‘IRANSansWeb’;
+
+src: url(‘./Fonts/IRANSansWeb(NoEn).woff2’) format(‘woff2’),
+
+url(‘./Fonts/IRANSansWeb(NoEn).woff’) format(‘woff’);
+
+font-weight: 400;
+
+font-style: normal;
+
+font-display: swap;
+
+}
+
+@font-face{
+
+font-family: ‘IRANSansWeb’;
+
+src: url(‘./Fonts/IRANSansWeb(NoEn)_Light.woff2’) format(‘woff2’),
+
+url(‘./Fonts/IRANSansWeb(NoEn)_Light.woff’) format(‘woff’);
+
+font-weight: 300;
+
+font-style: normal;
+
+font-display: swap;
+
+}
+
+@font-face{
+
+font-family: ‘IRANSansWeb’;
+
+src: url(‘./Fonts/IRANSansWeb(NoEn)_Medium.woff2’) format(‘woff2’),
+
+url(‘./Fonts/IRANSansWeb(NoEn)_Medium.woff’) format(‘woff’);
+
+font-weight: 500;
+
+font-style: normal;
+
+font-display: swap;
+
+}
+
+@font-face{
+
+font-family: ‘IRANSansWeb’;
+
+src: url(‘./Fonts/IRANSansWeb(NoEn)_Bold.woff2’) format(‘woff2’),
+
+url(‘./Fonts/IRANSansWeb(NoEn)_Bold.woff’) format(‘woff’);
+
+font-weight: 700;
+
+font-style: normal;
+
+font-display: swap;
+
+}
+
+@font-face{
+
+font-family: ‘IRANSansWeb’;
+
+src: url(‘./Fonts/IRANSansWeb(NoEn)_UltraLight.woff2’) format(‘woff2’),
+
+url(‘./Fonts/IRANSansWeb(NoEn)_UltraLight.woff’) format(‘woff’);
+
+font-weight: 200;
+
+font-style: normal;
+
+font-display: swap;
+
+}
 /* پایه */
 body{font-family: 'IRANSansWeb', Tahoma, Calibri, Arial, sans-serif;background:#fff;padding:20px;color:#1d1d1d}
 .header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
 .header h1{margin:0;font-size:1.6rem;color:#1d1d1d}
 .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .controls input[type="search"]{padding:8px 12px;border-radius:8px;border:1px solid #ddd;width:220px}
-.btn{background:#fff;border:1px solid #e0e0e0;padding:8px 12px;border-radius:10px;cursor:pointer;transition:all .18s}
+.btn{font-family: inherit; background:#fff;border:1px solid #e0e0e0;padding:8px 12px;border-radius:10px;cursor:pointer;transition:all .18s}
 .btn.active{background:#D00400;color:#fff;border-color:#b30000}
 
 /* شبکه و کارت */

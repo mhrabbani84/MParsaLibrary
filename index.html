@@ -4,282 +4,399 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>کتابخانه دیجیتال محمّدپارسا - فیلترشونده</title>
+<title>کتابخانه دیجیتال محمّدپارسا</title>
 <style>
-/* load local IRANSansWeb variants (adjust paths / file-names exact as on disk / repo) */
-
-@font-face{
-
-font-family: ‘IRANSansWeb’;
-
-src: url(‘./Fonts/IRANSansWeb(NoEn).woff2’) format(‘woff2’),
-
-url(‘./Fonts/IRANSansWeb(NoEn).woff’) format(‘woff’);
-
-font-weight: 400;
-
-font-style: normal;
-
-font-display: swap;
-
+/* --- Fonts --- */
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('./Fonts/IRANSansWeb(FaNum).woff2') format('woff2'),
+       url('./Fonts/IRANSansWeb(FaNum).woff') format('woff'),
+       url('./Fonts/IRANSansWeb(FaNum).ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('./Fonts/IRANSansWeb(FaNum)_Bold.woff2') format('woff2'),
+       url('./Fonts/IRANSansWeb(FaNum)_Bold.woff') format('woff'),
+       url('./Fonts/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('./Fonts/IRANSansWeb(FaNum)_Light.woff2') format('woff2'),
+       url('./Fonts/IRANSansWeb(FaNum)_Light.woff') format('woff'),
+       url('./Fonts/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('./Fonts/IRANSansWeb(FaNum)_Medium.woff2') format('woff2'),
+       url('./Fonts/IRANSansWeb(FaNum)_Medium.woff') format('woff'),
+       url('./Fonts/IRANSansWeb(FaNum)_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'IRANSansWeb';
+  src: url('./Fonts/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2'),
+       url('./Fonts/IRANSansWeb(FaNum)_UltraLight.woff') format('woff'),
+       url('./Fonts/IRANSansWeb(FaNum)_UltraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
 }
 
-@font-face{
-
-font-family: ‘IRANSansWeb’;
-
-src: url(‘./Fonts/IRANSansWeb(NoEn)_Light.woff2’) format(‘woff2’),
-
-url(‘./Fonts/IRANSansWeb(NoEn)_Light.woff’) format(‘woff’);
-
-font-weight: 300;
-
-font-style: normal;
-
-font-display: swap;
-
+body {
+    font-family: 'IRANSansWeb', Tahoma, Calibri, Arial, sans-serif;
+    background: #fdfdfd;
+    padding: 20px;
+    color: #1d1d1d;
+    margin: 0;
 }
 
-@font-face{
-
-font-family: ‘IRANSansWeb’;
-
-src: url(‘./Fonts/IRANSansWeb(NoEn)_Medium.woff2’) format(‘woff2’),
-
-url(‘./Fonts/IRANSansWeb(NoEn)_Medium.woff’) format(‘woff’);
-
-font-weight: 500;
-
-font-style: normal;
-
-font-display: swap;
-
+/* HEADER & CONTROLS */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
 }
 
-@font-face{
-
-font-family: ‘IRANSansWeb’;
-
-src: url(‘./Fonts/IRANSansWeb(NoEn)_Bold.woff2’) format(‘woff2’),
-
-url(‘./Fonts/IRANSansWeb(NoEn)_Bold.woff’) format(‘woff’);
-
-font-weight: 700;
-
-font-style: normal;
-
-font-display: swap;
-
+@media(min-width: 900px) {
+    .header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+    .header h1 {
+        white-space: nowrap;
+        margin-left: 20px;
+    }
+    .controls {
+        flex-grow: 1; 
+        justify-content: flex-end; 
+        width: auto;
+        flex-wrap: nowrap !important; 
+    }
+    .controls input[type="search"] {
+        max-width: 300px;
+        width: 300px;
+    }
 }
 
-@font-face{
-
-font-family: ‘IRANSansWeb’;
-
-src: url(‘./Fonts/IRANSansWeb(NoEn)_UltraLight.woff2’) format(‘woff2’),
-
-url(‘./Fonts/IRANSansWeb(NoEn)_UltraLight.woff’) format(‘woff’);
-
-font-weight: 200;
-
-font-style: normal;
-
-font-display: swap;
-
+.header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #1d1d1d;
+    font-weight: 700;
 }
-/* پایه */
-body{font-family: 'IRANSansWeb', Tahoma, Calibri, Arial, sans-serif;background:#fff;padding:20px;color:#1d1d1d}
-.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-.header h1{margin:0;font-size:1.6rem;color:#1d1d1d}
-.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.controls input[type="search"]{padding:8px 12px;border-radius:8px;border:1px solid #ddd;width:220px}
-.btn{font-family: inherit; background:#fff;border:1px solid #e0e0e0;padding:8px 12px;border-radius:10px;cursor:pointer;transition:all .18s}
-.btn.active{background:#D00400;color:#fff;border-color:#b30000}
 
-/* شبکه و کارت */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #eee;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;transition:transform .22s, box-shadow .22s}
-.card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(0,0,0,0.09)}
-.cover{width:100%;aspect-ratio:2/3;object-fit:cover;background:#f6f6f6}
-.info{padding:12px;display:flex;flex-direction:column;gap:8px}
-.title{font-weight:600;font-size:1rem;color:#1d1d1d}
-
-/* ساختار شش‌تکه متا */
-.meta-rows{display:flex;flex-direction:column;gap:1px;font-size:0.95rem;color:#555}
-.meta-row{display:flex;gap:1px;align-items:center;flex-wrap:wrap}
-.meta-label{min-width:84px;color:#AAAAA3;font-weight:400}
-.meta-value{color:#54529c;font-weight:600;word-break:break-word}
-
-/* فوتر کارت */
-.footer{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid #f3f3f3}
-.badge{padding:6px 10px;border-radius:999px;font-size:0.85rem}
-.badge.read{background:#e0f2f1;color:#00796b}
-.badge.unread{background:#fff3e0;color:#ef6c00}
-.badge.reading{background:#e8eaf6;color:#3949ab}
-.price{font-weight:700;color:#D00400}
-
-/* انیمیشن */
-.fade-in{animation:fadeIn .35s ease both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-@media (max-width:600px){
-  .controls input[type="search"]{width:140px}
+.controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap; 
 }
+
+.controls input[type="search"] {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-family: inherit;
+}
+
+.btn {
+    font-family: inherit;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    color: #555;
+    white-space: nowrap;
+}
+.btn:hover { background: #f9f9f9; }
+.btn.active {
+    background: #D00400;
+    color: #fff;
+    border-color: #D00400;
+}
+
+/* --- GRID & CARD ANIMATION FIX --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px; /* فضای بیشتر برای حرکت */
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    /* انیمیشن روی کل کارت */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* حرکت کل کارت به بالا */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.cover-container {
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: #f4f4f4;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* انیمیشن زوم عکس حذف شد تا تداخل ایجاد نکند */
+}
+
+.info {
+    padding: 15px; 
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.titles {
+    margin-bottom: 4px;
+}
+.title-main {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #000;
+    line-height: 1.3;
+    margin-bottom: 3px;
+}
+.title-sub {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.meta-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+.meta-row {
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
+}
+.meta-label {
+    color: #999;
+    font-size: 0.85rem;
+    min-width: 55px; 
+}
+.meta-value {
+    color: #333;
+    font-weight: 500;
+}
+
+.footer {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.badge.read { background: #e8f5e9; color: #2e7d32; }
+.badge.reading { background: #e3f2fd; color: #1565c0; }
+.badge.unread { background: #fff3e0; color: #ef6c00; }
+
+.score {
+    font-weight: 700;
+    color: #D00400;
+    font-size: 0.95rem;
+}
+
+.fade-in { animation: fadeIn 0.5s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body>
+
 <div class="header">
-  <h1>کتابخانه دیجیتال محمّدپارسا</h1>
-  <div class="controls">
-    <input type="search" id="search" placeholder="جستجو بر اساس عنوان، نویسنده...">
-    <button class="btn" data-filter="all">همه</button>
-    <button class="btn" data-filter="خوانده شده">خوانده شده</button>
-    <button class="btn" data-filter="در حال خواندن">در حال خواندن</button>
-    <button class="btn" data-filter="خوانده نشده">خوانده نشده</button>
-  </div>
+    <h1>کتابخانه دیجیتال محمّدپارسا</h1>
+    <div class="controls">
+        <input type="search" id="search" placeholder="جستجو...">
+        <button class="btn active" data-filter="all">همه</button>
+        <button class="btn" data-filter="خوانده شده">خوانده شده</button>
+        <button class="btn" data-filter="در حال خواندن">در حال خواندن</button>
+        <button class="btn" data-filter="خوانده نشده">خوانده نشده</button>
+    </div>
 </div>
+
 <div id="grid" class="grid"></div>
 
-<script id="books-data" type="application/json">[{"title": "کتاب ته جدولی ها 1: (راز داورهای خواب آلود)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786008869870.jpg", "isbn": "978-6008869870"}, {"title": "کتاب ته جدولی ها 2: (راز هفت گل به خودی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222040024.jpg", "isbn": "978-6222040024"}, {"title": "کتاب ته جدولی ها 3: (راز دروازه بان شبح مانند)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222040550.jpg", "isbn": "978-6222040550"}, {"title": "کتاب ته جدولی ها 4: (راز چشم شاهین)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222040956.jpg", "isbn": "978-6222040956"}, {"title": "کتاب ته جدولی ها 5: راز سرقت غیر ممکن", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222041458.jpg", "isbn": "978-6222041458"}, {"title": "کتاب ته جدولی ها 6: (راز قلعه ی افسون شده)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222041861.jpg", "isbn": "978-6222041861"}, {"title": "کتاب ته جدولی ها 7: (راز پنالتی نامرئی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222042820.jpg", "isbn": "978-6222042820"}, {"title": "کتاب ته جدولی ها 8: (راز سیرک آتش)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222044015.jpg", "isbn": "978-6222044015"}, {"title": "کتاب ته جدولی‌ها 9: راز بارش شهابی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222044237.jpg", "isbn": "978-6222044237"}, {"title": "کتاب ته جدولی ها 10: راز گنج دزدان دریایی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222046064.jpg", "isbn": "978-6222046064"}, {"title": "کتاب ته جدولی ها 11: معمای روز ساده لوحان", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "price": "1000.0", "status": "خوانده شده", "image_path": "Books Images/9786222047016.jpg", "isbn": "978-6222047016"}, {"title": "کتاب جنگاوران خونیرث (1): مجموعه داستان مصور دنباله دار", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "در حال خواندن", "image_path": "Books Images/9786228187013.jpg", "isbn": "978-6228187013"}, {"title": "کتاب یونا (1): مبارزه دژ سبز", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده نشده", "image_path": "Books Images/9786229111093.jpg", "isbn": "978-6229111093"}, {"title": "کتاب ایلیا 5: تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229841532.jpg", "isbn": "978-6229841532"}, {"title": "کتاب ایلیا 6 و ۷: تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229455913.jpg", "isbn": "978-6229455913"}, {"title": "کتاب ایلیا 8 و ۹", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229455920.jpg", "isbn": "978-6229455920"}, {"title": "کتاب ایلیا (11-10): تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786227376074.jpg", "isbn": "978-6227376074"}, {"title": "کتاب ایلیا (12): تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786227376227.jpg", "isbn": "978-6227376227"}, {"title": "کتاب ایلیا (13): تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229805701.jpg", "isbn": "978-6229805701"}, {"title": "کتاب ایلیا (14): تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229805787.jpg", "isbn": "978-6229805787"}, {"title": "کتاب ایلیا 15: طلسم سایه", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229841525.jpg", "isbn": "978-6229841525"}, {"title": "کتاب ایلیا 16: طلسم سایه", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229841587.jpg", "isbn": "978-6229841587"}, {"title": "کتاب ایلیا (17): نبرد ربات ها", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786229455951.jpg", "isbn": "978-6229455951"}, {"title": "کتاب ایلیا (18): نبرد ربات ها", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786228010021.jpg", "isbn": "978-6228010021"}, {"title": "کتاب ایلیا: جادوی سرخ: مجموعه داستان مصور دنباله دار 20", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786228187372.jpg", "isbn": "978-6228187372"}, {"title": "کتاب ایلیا: جادوی سرخ: مجموعه داستان مصور دنباله دار 20", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786228187372.jpg", "isbn": "978-6228187372"}, {"title": "کتاب ایلیا: جادوی سرخ", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786228187372.jpg", "isbn": "978-6228187372"}, {"title": "کتاب ایلیا : جادوی سرخ (22): مجموعه داستان مصور دنباله دار 22", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786224290014.jpg", "isbn": "978-6224290014"}, {"title": "کتاب نامه های فلیکس: قصه های فلیکس 1 (خرگوش کوچولو به سفر دور دنیا می رود)", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786287600126.jpg", "isbn": "978-6287600126"}, {"title": "کتاب فلیکس به سیرک می رود: قصه های فلیکس 3", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786006287621.jpg", "isbn": "978-6006287621"}, {"title": "کتاب فلیکس به گذشته سفر می کند: قصه های فلیکس 5", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786007438008.jpg", "isbn": "978-6007438008"}, {"title": "کتاب فلیکس و ماجرای ماشین زمان درب و داغون: قصه های فلیکس 6", "author": "آنت لنگن", "translator": "منیژه نصیری", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786007438015.jpg", "isbn": "978-6007438015"}, {"title": "کتاب هدیه تولد از طرف فلیکس: قصه های فلیکس 9", "author": "آنت لنگن", "translator": "منیژه نصیری", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786007438121.jpg", "isbn": "978-6007438121"}, {"title": "کتاب فلیکس ساعت چنده؟: قصه های فلیکس13", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "price": "", "status": "خوانده شده", "image_path": "Books Images/9786007438275.jpg", "isbn": "978-6007438275"}]</script>
+<script id="books-data" type="application/json">[{"title_main": "ته جدولی ها 1", "title_sub": "(راز داورهای خواب آلود)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2013)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/009b1527fc0c4feaa8531f438417505b.jpg", "isbn": "9786008869870"}, {"title_main": "ته جدولی ها 2", "title_sub": "(راز هفت گل به خودی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/5e488f22ca8f4a5eb75296593c43130c.jpg", "isbn": "9786222040024"}, {"title_main": "ته جدولی ها 3", "title_sub": "(راز دروازه بان شبح مانند)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f154d489e48b4ed4b80240878433c4ad.jpg", "isbn": "9786222040550"}, {"title_main": "ته جدولی ها 4", "title_sub": "(راز چشم شاهین)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/ed2937f2a47d4d828634fbd1facc0dcf.jpg", "isbn": "9786222040956"}, {"title_main": "ته جدولی ها 5", "title_sub": "راز سرقت غیر ممکن", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2016)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/b1fc91a0690a4a6eb1803da4fbc64467.jpg", "isbn": "9786222041458"}, {"title_main": "ته جدولی ها 6", "title_sub": "(راز قلعه ی افسون شده)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2015)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/0c633c7ba76d4bd085e39c4464b0a886.jpg", "isbn": "9786222041861"}, {"title_main": "ته جدولی ها 7", "title_sub": "(راز پنالتی نامرئی)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1403 (2015)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/876f134bd5fd4bde884600a12739e78a.jpg", "isbn": "9786222042820"}, {"title_main": "ته جدولی ها 8", "title_sub": "(راز سیرک آتش)", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1403 (2016)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/e7b0235ca55f49a0b1e9c576d3ee24df.jpg", "isbn": "9786222044015"}, {"title_main": "ته جدولی‌ها 9", "title_sub": "راز بارش شهابی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1403 (2016)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/0579e030d71b4c0bba9275562fd8e674.jpg", "isbn": "9786222044237"}, {"title_main": "ته جدولی ها 10", "title_sub": "راز گنج دزدان دریایی", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2016)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/2a61a6d24c47445d84104f53cc9d535f.jpg", "isbn": "9786222046064"}, {"title_main": "ته جدولی ها 11", "title_sub": "معمای روز ساده لوحان", "author": "روبرتو سانتیاگو", "translator": "سعید متین", "publisher": "هوپا", "year": "1404 (2017)", "status": "خوانده شده", "score": "1000", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/4bdc3c6f4b124b0aab9e023e1b3a8f0b.jpg", "isbn": "9786222047016"}, {"title_main": "جنگاوران خونیرث (1)", "title_sub": "مجموعه داستان مصور دنباله دار", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1403", "status": "در حال خواندن", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/3a8dc9dc020943f28d8b10475efe87a7.jpg", "isbn": "9786228187013"}, {"title_main": "یونا (1)", "title_sub": "مبارزه دژ سبز", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1403", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f173737d9235441b9b97d6b91b880c63.jpg", "isbn": "9786229111093"}, {"title_main": "ایلیا 5", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1403", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/5fdbf85ec2644db2b91d577244caacbc.jpg", "isbn": "9786229841532"}, {"title_main": "ایلیا 6 و ۷", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/8abbba1c817c42f0898b34ac49c1e714.jpg", "isbn": "9786229455913"}, {"title_main": "ایلیا 8 و ۹", "title_sub": "", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1403 (2020)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/28d4316d696a4638a139a48d538c4a46.jpg", "isbn": "9786229455920"}, {"title_main": "ایلیا (11-10)", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1400", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/88208fd9d90143c88bf9d06a7d537d7e.jpg", "isbn": "9786227376074"}, {"title_main": "ایلیا (12)", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1401", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/3d9f5509152f4432b99ec49d0ea7874f.jpg", "isbn": "9786227376227"}, {"title_main": "ایلیا (13)", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/ee02020577394c6c929c5b53c2b645ae.jpg", "isbn": "9786229805701"}, {"title_main": "ایلیا (14)", "title_sub": "تولد یک قهرمان", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1403", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/b42b7806237a442ea1445955e7391ebc.jpg", "isbn": "9786229805787"}, {"title_main": "ایلیا 15", "title_sub": "طلسم سایه", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/93ebd17914794d0489629cdeb34a47f8.jpg", "isbn": "9786229841525"}, {"title_main": "ایلیا 16", "title_sub": "طلسم سایه", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1403", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/785707914b9c41acbd4e12adf4413c63.jpg", "isbn": "9786229841587"}, {"title_main": "ایلیا (17)", "title_sub": "نبرد ربات ها", "author": "امین توکلی", "translator": "", "publisher": "کمیکا", "year": "1402", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1423665ce1bb4f35bbedf11e2be69076.jpg", "isbn": "9786229455951"}, {"title_main": "ایلیا (18)", "title_sub": "نبرد ربات ها", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/03acb2c3c5344d86b1daa09f96a2aa6e.jpg", "isbn": "9786228010021"}, {"title_main": "ایلیا (19)", "title_sub": "نبرد ربات‌ها", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/d5e220785d8949af975d7b71f933f4fb.jpg", "isbn": "9786228187037"}, {"title_main": "ایلیا: جادوی سرخ", "title_sub": "مجموعه داستان مصور دنباله دار 20", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/d0c8ec1a70b24c6c92787becfa46dc4b.jpg", "isbn": "9786228187372"}, {"title_main": "ایلیا: جادوی سرخ", "title_sub": "مجموعه داستان مصور دنباله دار 21", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/641665f0e7f14435ae5c7a616f19e4ce.jpg", "isbn": "9786229805718"}, {"title_main": "ایلیا : جادوی سرخ (22)", "title_sub": "مجموعه داستان مصور دنباله دار 22", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/99da64ddc2154f31872d2310d09aa9a7.jpg", "isbn": "9786224290014"}, {"title_main": "ایلیا: جادوی سرخ", "title_sub": "داستان مصور دنباله‌دار 23", "author": "ماه منیر داستان پور", "translator": "", "publisher": "کمیکا", "year": "1404", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/5dc01186f14c4c4a91482c7ca20e73ac.jpg", "isbn": "9786224290342"}, {"title_main": "نامه های فلیکس", "title_sub": "قصه های فلیکس 1 (خرگوش کوچولو به سفر دور دنیا می رود)", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "year": "1401 (1994)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/c1b96870596d467d9565dbeac5d23f3f.jpg", "isbn": "9786287600126"}, {"title_main": "فلیکس به سیرک می رود", "title_sub": "قصه های فلیکس 3", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "year": "1401 (1999)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/c2ca47ea280f4e1988ecc9436c9a15b4.jpg", "isbn": "9786006287621"}, {"title_main": "فلیکس به گذشته سفر می کند", "title_sub": "قصه های فلیکس 5", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "year": "1402 (1995)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f5f519ddf7314482892efd4a892d579e.jpg", "isbn": "9786007438008"}, {"title_main": "فلیکس و ماجرای ماشین زمان درب و داغون", "title_sub": "قصه های فلیکس 6", "author": "آنت لنگن", "translator": "منیژه نصیری", "publisher": "زعفران", "year": "1401 (2006)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/8a2414fe98b04bb2a381fda3e2c581e3.jpg", "isbn": "9786007438015"}, {"title_main": "هدیه تولد از طرف فلیکس", "title_sub": "قصه های فلیکس 9", "author": "آنت لنگن", "translator": "منیژه نصیری", "publisher": "زعفران", "year": "1402 (2001)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/4b7f62cd3b444b60b644f24795a69503.jpg", "isbn": "9786007438121"}, {"title_main": "فلیکس ساعت چنده؟", "title_sub": "قصه های فلیکس 13", "author": "آنت لنگن", "translator": "محبوبه نجف خانی", "publisher": "زعفران", "year": "1404 (1998)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/216672a16d3643b6873e3edca2ecdb4e.jpg", "isbn": "9786007438275"}, {"title_main": "خانه درختی 13 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2011)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/3a45cc70bc904ea2831d4f24e5f1febd.jpg", "isbn": "9786008025535"}, {"title_main": "خانه درختی 26 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2012)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/963b850de2f349f2a85816374fea5a07.jpg", "isbn": "9786008025542"}, {"title_main": "خانه درختی 39 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2013)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1b5556ae2e404af39664f4a572a6b525.jpg", "isbn": "9786008025597"}, {"title_main": "خانه درختی 52 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/85c9fe70798b4173bd1cf7fd9eab3432.jpg", "isbn": "9786008025603"}, {"title_main": "خانه درختی 65 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2015)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/7fea2bae962845b8b173663ebeae253a.jpg", "isbn": "9786008655237"}, {"title_main": "خانه درختی 78 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2016)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/8ecb733da5874e81b15485574cbad270.jpg", "isbn": "9786008655886"}, {"title_main": "خانه درختی 91 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2017)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/fbdb33c8cb8147b88c09db8d0dd71031.jpg", "isbn": "9786008869382"}, {"title_main": "خانه درختی 104 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/d2142d244eb24bb98f12034d843df791.jpg", "isbn": "9786222040741"}, {"title_main": "خانه درختی 117 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2019)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/e3080061a566470baf299f7cc356be32.jpg", "isbn": "9786222042127"}, {"title_main": "خانه درختی 130 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2020)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/9937fcf1ca0c40ea96df2090105e5425.jpg", "isbn": "9786222044619"}, {"title_main": "خانه درختی 143 طبقه", "title_sub": "", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2021)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/19ab2788e93b4fa8be4451dfd4722d46.jpg", "isbn": "9786222046330"}, {"title_main": "خانه‌درختی 156 طبقه", "title_sub": "داستان‌های خانه‌درختی 12", "author": "اندی گریفیتس", "translator": "آنیتا یارمحمدی", "publisher": "هوپا", "year": "1404 (2023)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/76d79471fbd2466ba75ee9a9be467faf.jpg", "isbn": "9786222046910"}, {"title_main": "باران آتش", "title_sub": "هفت نشانه", "author": "مایکل آدامز", "translator": "عطیه الحسینی", "publisher": "فاطمی", "year": "1401 (2016)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f1806f6295c74ecca9acdf7791d17fa4.jpg", "isbn": "9786227564419"}, {"title_main": "قتل عام", "title_sub": "هفت نشانه", "author": "مایکل آدامز", "translator": "ساره ارض پیما", "publisher": "فاطمی", "year": "1401 (2016)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1c1e3f5c2676479589e69e986be186ea.jpg", "isbn": "9786227564426"}, {"title_main": "نابودی کامل", "title_sub": "هفت نشانه _3", "author": "مایکل آدامز", "translator": "عطیه الحسینی", "publisher": "فاطمی", "year": "1401 (2017)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/ecdd46035996497c809c254d7fc0ff8b.jpg", "isbn": "9786227564433"}, {"title_main": "کلید مرگ", "title_sub": "هفت نشانه _ 4", "author": "مایکل آدامز", "translator": "ساره ارض پیما", "publisher": "فاطمی", "year": "1402 (2017)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f5e40453fbda48b68e02e5b070824e06.jpg", "isbn": "9786227564440"}, {"title_main": "ارباب جنایت", "title_sub": "هفت نشانه (5)", "author": "مایکل آدامز", "translator": "عطیه الحسینی", "publisher": "فاطمی", "year": "1402 (2017)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f44ebdc6f80940fdaab881554e3a5894.jpg", "isbn": "9786227564457"}, {"title_main": "موج وحشت", "title_sub": "هفت نشانه 6", "author": "مایکل آدامز", "translator": "ساره ارض پیما", "publisher": "فاطمی", "year": "1402 (2017)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/4c1c9cb7424340cca6479ce1528f7062.jpg", "isbn": "9786227564464"}, {"title_main": "نقطه ی صفر", "title_sub": "هفت نشانه _7", "author": "مایکل آدامز", "translator": "ساره ارض پیما", "publisher": "فاطمی", "year": "1402 (2017)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/2a77de1949564bcb9f4aa85cd50019a0.jpg", "isbn": "9786227564471"}, {"title_main": "اسارت", "title_sub": "(نگهبانان گاهول 1)", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1403 (2003)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/404ff876ad5e437395c74f4f115026a2.jpg", "isbn": "9786222040062"}, {"title_main": "سفر", "title_sub": "(نگهبانان گاهول 2)", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1402 (2003)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/8ddc84cba33740adb6e10011580fc3da.jpg", "isbn": "9786222040079"}, {"title_main": "نجات", "title_sub": "(نگهبانان گاهول 3)", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1402 (2003)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/10e8842929e64627b37493ed6469717a.jpg", "isbn": "9786222040925"}, {"title_main": "محاصره", "title_sub": "(نگهبانان گاهول 4)", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1399 (2004)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f06fb7221dd7424f9ba7d52ca3a1d6b6.jpg", "isbn": "9786222042035"}, {"title_main": "فروپاشی", "title_sub": "نگهبانان گاهول 5", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1399 (2004)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1c87d2eabc904348b839cf27a039f3d1.jpg", "isbn": "9786222042240"}, {"title_main": "اشتعال", "title_sub": "نگهبانان گاهول 6", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1404 (2004)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/7401edc090fe4fa4bd36140ebde41170.jpg", "isbn": "9786222043308"}, {"title_main": "نوزاده: پادشاه آتش بین 1", "title_sub": "نگهبانان گاهول 7", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1402 (2005)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/89165797eae246fba04ac6c23b1c40f5.jpg", "isbn": "9786222044404"}, {"title_main": "مطرود: نگهبانان گاهول 8", "title_sub": "پادشاه آتش بین 2", "author": "کاترین لسکی", "translator": "بهنام حاجی زاده", "publisher": "هوپا", "year": "1402 (2005)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1db27915ca884bfca6648bf1a69381ed.jpg", "isbn": "9786222044930"}, {"title_main": "دنیای معرکه تام گیتس", "title_sub": "تام گیتس 1", "author": "لیز پیشون", "translator": "بهار سرلک", "publisher": "هوپا", "year": "1404 (2011)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/96133139b8074578a3395a4026572b1d.jpg", "isbn": "9786222045692"}, {"title_main": "بهانه های عالی و چیزهای خوب دیگر", "title_sub": "تام گیتس 2", "author": "لیز پیشون", "translator": "بهرنگ رجبی", "publisher": "هوپا", "year": "1403 (2011)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/151f9591fd3343dc81e2b8b7158ea6df.jpg", "isbn": "9786008025566"}, {"title_main": "همه چی باحال است (یک جورهایی)", "title_sub": "تام گیتس 3", "author": "لیز پیشون", "translator": "بهرنگ رجبی", "publisher": "هوپا", "year": "1404 (2012)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/3a65cef549c14b8880330497060e7594.jpg", "isbn": "9786008025573"}, {"title_main": "ایده‌های خلاقانه (البته بیشترشان)", "title_sub": "تام گیتس 4", "author": "لیز پیشون", "translator": "بهرنگ رجبی", "publisher": "هوپا", "year": "1404 (2012)", "status": "خوانده نشده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/9eacb100c6944230a0b0acafad6ad27c.jpg", "isbn": "9786008025580"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 1", "title_sub": "یک دستیار همه فن حریف", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/34cd3a283af9468ebc2deebf8153f1e7.jpg", "isbn": "9786008025719"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 2", "title_sub": "مومیایی گمشده", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/efdbc054e11e4ae4be049b75ef381385.jpg", "isbn": "9786008025726"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 3", "title_sub": "مهمان ناخوانده", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2008)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/7e163d6d28d04778a1db3b08b324db8a.jpg", "isbn": "9786008025733"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 4", "title_sub": "یک روز در میدان اسب دوانی", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2014)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/3a728fa0755345fc8d0fed6123d9b586.jpg", "isbn": "9786008025740"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 5", "title_sub": "در جستجوی موها", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/46748f17d1f649058ffd39afd1ccfa86.jpg", "isbn": "9786008025757"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 6", "title_sub": "معما در جام جهانی فوتبال", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/11aeed3aa0494d928e943b403c98c167.jpg", "isbn": "9786008025764"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 7", "title_sub": "سال نوی چینی", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/787e17f05a8c4cc5905b70e9cde887ed.jpg", "isbn": "9786008025771"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 8", "title_sub": "دردسر در کارخانه ی چترسازی", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/09267fccd6704c7fbb42c247d8fa10cc.jpg", "isbn": "9786008025788"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 9", "title_sub": "یک داستان خیلی مغناطیسی", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/ee2cffe4e33a4705a7025ce2d410566d.jpg", "isbn": "9786008025894"}, {"title_main": "کارآگاه سیتو و دستیارش چین می ادو 10", "title_sub": "پرونده ی ویژه: فراتر از ترس!", "author": "آنتونیو ایتوربه", "translator": "رضا اسکندری", "publisher": "هوپا", "year": "1404 (2007)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/92bd9d6e4af54a2d84bff63e02fb969e.jpg", "isbn": "9786008025962"}, {"title_main": "مسافران زمان 1", "title_sub": "(ماجرای خانواده ی بالبوئنا در غرب وحشی)", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1404 (2016)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/63c2da39d23847058d5b9a7fb47269b6.jpg", "isbn": "9786222041540"}, {"title_main": "مسافران زمان 2", "title_sub": "ماجرای خانواده ی بالبوئنا و آخرین شوالیه", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1404 (2016)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/2d6a3ed31ab4469ca42cb901adc1ba34.jpg", "isbn": "9786222042189"}, {"title_main": "مسافران زمان 3", "title_sub": "(ماجرای خانواده ی بالبوئنا در امپراتوری روم)", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1403 (2015)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/e0ad3b83c30841358e205da26070ec74.jpg", "isbn": "9786222043780"}, {"title_main": "مسافران زمان 4", "title_sub": "ماجرای خانواده ی بالبوینا در کشتی دزدان دریایی", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1403 (20169)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/79ce52bce654444381420ae5198fb61a.jpg", "isbn": "9786222045388"}, {"title_main": "مسافران زمان 5", "title_sub": "ماجرای خانواده ی بالبوئنا و گنگستر کوچک", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1403 (2018)", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/16bf4a6c02394855a835f1d1932141a3.jpg", "isbn": "9786222046217"}, {"title_main": "مسافران زمان 6", "title_sub": "ماجرای خانواده‌ی بالبوئنا در دنیای دایناسورها", "author": "روبرتو سانتیاگو", "translator": "آزاده رادکیان پور", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1444a83d47b942db83b815f255d92a96.jpg", "isbn": "9786222047160"}, {"title_main": "کارآگاه سیتو در ایران 1", "title_sub": "یه سر و دو گوش در تخت جمشید", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/90f15ca3ca4942efa5d8b0d99a5d7c3b.jpg", "isbn": "9786222046415"}, {"title_main": "کارآگاه سیتو در ایران 2", "title_sub": "دلفین های جزیره غیب می شوند", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/47cdeb6f0d3d479eb232b820d13b0eed.jpg", "isbn": "9786222046422"}, {"title_main": "کارآگاه سیتو در ایران 3", "title_sub": "ماجراجویی در غار", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/f12a19a796e04a14b426ee04853b16ae.jpg", "isbn": "9786222045623"}, {"title_main": "کارآگاه سیتو در ایران 4", "title_sub": "تابلوی پرنده", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/e515fec4bea8433084b84068fc130169.jpg", "isbn": "9786222046576"}, {"title_main": "کارآگاه سیتو در ایران 5", "title_sub": "شمشیر در استادیوم فوتبال", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/497be7cfaa2d48eba178e2ccf43525e7.jpg", "isbn": "9786222046729"}, {"title_main": "کارآگاه سیتو در ایران 6", "title_sub": "", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/690afcbf38c2484eb6babaea2b2c854c.jpg", "isbn": "97862220469023"}, {"title_main": "کارآگاه سیتو در ایران 7", "title_sub": "کله ماستی ها", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/b8917013c5e049bdbaef0ce4a38f6ad2.jpg", "isbn": "9786222047047"}, {"title_main": "کارآگاه سیتو در ایران 8", "title_sub": "سیندرلا در تبریز", "author": "لاله زارع", "translator": "", "publisher": "هوپا", "year": "1404", "status": "خوانده شده", "score": "", "image_path": "https://img.iranketab.ir/img/225x330?pic=www.iranketab.ir/Images/ProductImages/1c43a70bd49f48aab9e7c30bf61ac03c.jpg", "isbn": "9786222047177"}]</script>
 
 <script>
 const books = JSON.parse(document.getElementById('books-data').textContent || '[]');
 const grid = document.getElementById('grid');
-const search = document.getElementById('search');
+const searchInput = document.getElementById('search');
+const btns = document.querySelectorAll('.btn');
 let activeFilter = 'all';
+
 const defaultCover = 'default_cover.png';
 
-// وضعیت را استاندارد می‌کند و کلاس مناسب را برمی‌گرداند
-function statusClass(s){
-  if(!s) return 'unread';
-  const t = String(s).replace(/\s+/g,'').toLowerCase();
-  if(t.includes('درحالخواندن') || t.includes('reading')) return 'reading';
-  if(t.includes('خواندهنشده') || t.includes('نخوانده') || t.includes('unread')) return 'unread';
-  if(t.includes('خواندهشده') || t.includes('خوانده') || t.includes('read')) return 'read';
-  return 'unread';
+function normalizeStatus(s) {
+    if(!s) return 'unread';
+    s = String(s).toLowerCase().replace(/\s+/g, '');
+    if(s.includes('خواندهشده') || s.includes('read') || s.includes('yes')) return 'read';
+    if(s.includes('درحال') || s.includes('reading')) return 'reading';
+    return 'unread';
 }
 
-// تابع renderBooks — می‌سازد کارت را با 6 بخش متا: نویسنده، مترجم، ناشر، امتیاز، وضعیت، شابک
-function renderBooks(list){
-  grid.innerHTML = '';
-  const frag = document.createDocumentFragment();
-  list.forEach(b=>{
-    const card = document.createElement('div'); card.className = 'card fade-in';
+function getStatusLabel(normStatus) {
+    if(normStatus === 'read') return 'خوانده شده';
+    if(normStatus === 'reading') return 'در حال خواندن';
+    return 'خوانده نشده';
+}
 
-    // تصویر جلد
-    const img = document.createElement('img');
-    img.className = 'cover';
-    img.src = b.image_path || defaultCover;
-    img.alt = 'جلد ' + (b.title || '');
-    img.onerror = function(){ this.onerror=null; this.src = defaultCover; };
+function render(list) {
+    grid.innerHTML = '';
+    const frag = document.createDocumentFragment();
+    
+    list.forEach(b => {
+        const card = document.createElement('div');
+        card.className = 'card fade-in';
+        
+        const st = normalizeStatus(b.status);
+        let imgPath = b.image_path || defaultCover;
+        
+        card.innerHTML = `
+            <div class="cover-container">
+                <img src="${imgPath}" class="cover" alt="${b.title_main}" onerror="this.src='${defaultCover}'">
+            </div>
+            <div class="info">
+                <div class="titles">
+                    <div class="title-main">${b.title_main}</div>
+                    ${b.title_sub ? `<div class="title-sub">${b.title_sub}</div>` : ''}
+                </div>
+                
+                <div class="meta-rows">
+                    ${metaRow('نویسنده:', b.author)}
+                    ${metaRow('مترجم:', b.translator)}
+                    ${metaRow('ناشر:', b.publisher)}
+                    ${metaRow('سال:', b.year)}
+                </div>
 
-    // اطلاعات
-    const info = document.createElement('div'); info.className = 'info';
-    const h = document.createElement('div'); h.className='title';
-    h.textContent = b.title || '(بدون عنوان)';
-
-    // meta rows container
-    const meta = document.createElement('div'); meta.className = 'meta-rows';
-
-    // helper برای اضافه کردن سطر متا (label + value) — اگر مقدار خالی باشد نمایش نمی‌دهد
-    function addMeta(labelText, valueText){
-      const value = (valueText === null || valueText === undefined) ? '' : String(valueText).trim();
-      if(!value) return;
-      const row = document.createElement('div'); row.className='meta-row';
-      const lbl = document.createElement('span'); lbl.className='meta-label'; lbl.textContent = labelText;
-      const val = document.createElement('span'); val.className='meta-value'; val.textContent = value;
-      row.appendChild(lbl); row.appendChild(val);
-      meta.appendChild(row);
+                <div class="footer">
+                    <span class="badge ${st}">${getStatusLabel(st)}</span>
+                    ${b.score ? `<span class="score">${b.score} امتیاز</span>` : ''}
+                </div>
+            </div>
+        `;
+        frag.appendChild(card);
+    });
+    
+    if(list.length === 0) {
+        grid.innerHTML = '<p style="color:#777; width:100%;">هیچ کتابی با این مشخصات یافت نشد.</p>';
+    } else {
+        grid.appendChild(frag);
     }
-
-    addMeta('نویسنده:', b.author);
-    addMeta('مترجم:', b.translator);
-    addMeta('ناشر:', b.publisher);
-
-
-    // footer شامل badge وضعیت و قیمت (در صورت وجود)
-    const footer = document.createElement('div'); footer.className='footer';
-    const badge = document.createElement('span'); 
-    const stClass = statusClass(b.status);
-    badge.className = 'badge ' + (stClass === 'read' ? 'read' : stClass === 'reading' ? 'reading' : 'unread');
-    badge.textContent = stClass === 'read' ? 'خوانده شده' : stClass === 'reading' ? 'در حال خواندن' : 'خوانده نشده';
-
-    const price = document.createElement('div'); price.className='price';
-    if(b.price) price.textContent = String(b.price) + ' امتیاز';
-
-    footer.appendChild(badge);
-    if(b.price) footer.appendChild(price);
-
-    info.appendChild(h);
-    info.appendChild(meta);
-    info.appendChild(footer);
-
-    card.appendChild(img);
-    card.appendChild(info);
-    frag.appendChild(card);
-  });
-  grid.appendChild(frag);
 }
 
-// فیلتر و جستجو
-function applyFilters(){
-  const q = (search.value || '').trim().toLowerCase();
-  let filtered = books.filter(b=>{
-    if(activeFilter !== 'all'){
-      // بررسی برچسب وضعیت (به صورت رشته)
-      if(!b.status || String(b.status).indexOf(activeFilter) === -1){
-        // همچنین چک با کلاس وضعیت استاندارد
-        const sc = statusClass(b.status);
-        if(activeFilter === 'خوانده شده' && sc !== 'read') return false;
-        if(activeFilter === 'در حال خواندن' && sc !== 'reading') return false;
-        if(activeFilter === 'خوانده نشده' && sc !== 'unread') return false;
-      }
-    }
-    if(q){
-      const hay = ((b.title||'') + ' ' + (b.author||'') + ' ' + (b.publisher||'') + ' ' + (b.translator||'') + ' ' + (b.isbn||'')).toLowerCase();
-      return hay.indexOf(q) !== -1;
-    }
-    return true;
-  });
-  renderBooks(filtered);
-  updateCounters();
+function metaRow(label, val) {
+    if(!val) return '';
+    return `
+        <div class="meta-row">
+            <span class="meta-label">${label}</span>
+            <span class="meta-value">${val}</span>
+        </div>
+    `;
 }
 
-// به‌روزرسانی شمارنده‌ها
-function updateCounters(){
-  const counts = { all: books.length, read: 0, reading: 0, unread: 0 };
-  books.forEach(b=>{
-    const st = statusClass(b.status);
-    counts[st] = (counts[st] || 0) + 1;
-  });
-  document.querySelectorAll('.btn').forEach(btn=>{
-    const key = btn.getAttribute('data-filter');
-    let text = btn.textContent.split(' (')[0];
-    let count = 0;
-    if(key === 'all') count = counts.all;
-    else if(key === 'خوانده شده') count = counts.read;
-    else if(key === 'در حال خواندن') count = counts.reading;
-    else if(key === 'خوانده نشده') count = counts.unread;
-    btn.textContent = text + ' (' + count + ')';
-  });
+function updateCounters() {
+    const counts = { all: 0, read: 0, reading: 0, unread: 0 };
+    
+    counts.all = books.length;
+    books.forEach(b => {
+        const st = normalizeStatus(b.status);
+        counts[st]++;
+    });
+
+    btns.forEach(btn => {
+        const key = btn.getAttribute('data-filter');
+        let label = '';
+        switch(key) {
+            case 'all': label = 'همه'; break;
+            case 'خوانده شده': label = 'خوانده شده'; break;
+            case 'در حال خواندن': label = 'در حال خواندن'; break;
+            case 'خوانده نشده': label = 'خوانده نشده'; break;
+        }
+        
+        let count = 0;
+        if(key === 'all') count = counts.all;
+        else if(key === 'خوانده شده') count = counts.read;
+        else if(key === 'در حال خواندن') count = counts.reading;
+        else if(key === 'خوانده نشده') count = counts.unread;
+        
+        btn.textContent = `${label} (${count})`;
+    });
 }
 
-// وصل کردن رویدادها
-document.querySelectorAll('.btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.getAttribute('data-filter') || 'all';
-    applyFilters();
-  });
+function apply() {
+    const q = searchInput.value.toLowerCase().trim();
+    
+    const filtered = books.filter(b => {
+        const st = normalizeStatus(b.status);
+        if (activeFilter === 'خوانده شده' && st !== 'read') return false;
+        if (activeFilter === 'در حال خواندن' && st !== 'reading') return false;
+        if (activeFilter === 'خوانده نشده' && st !== 'unread') return false;
+
+        if (!q) return true;
+        const haystack = `${b.title_main} ${b.title_sub} ${b.author} ${b.publisher} ${b.translator}`.toLowerCase();
+        return haystack.includes(q);
+    });
+    
+    render(filtered);
+}
+
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter');
+        apply();
+    });
 });
 
-search.addEventListener('input', ()=>{ applyFilters(); });
-
-// شروع
-renderBooks(books);
+searchInput.addEventListener('input', apply);
 updateCounters();
+render(books);
 </script>
 </body>
 </html>
-

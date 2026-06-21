@@ -104,11 +104,6 @@ input[type="search"]:focus { border-color: #888; }
 
 
 
-
-
-
-
-
 /* Slider Container */
 .slider-container {
     margin: 25px auto;
@@ -133,18 +128,25 @@ input[type="search"]:focus { border-color: #888; }
     font-weight: 600;
 }
 
-.range-display {
-    color: #fff;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-weight: 500;
+.score-filter {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 15px 20px;
 }
 
-/* Slider Styling */
+.range-display {
+    color: #333;
+    font-size: 1rem;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
 #score-slider {
-    margin: 15px 10px;
+    flex: 1;
+    min-width: 200px;
+    margin: 0;
 }
 
 /* noUiSlider customization */
@@ -238,7 +240,18 @@ input[type="search"]:focus { border-color: #888; }
 
 
 
-
+/* برای موبایل */
+@media (max-width: 600px) {
+    .score-filter {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    #score-slider {
+        width: 100%;
+    }
+}
 
 
 
@@ -270,10 +283,12 @@ input[type="search"]:focus { border-color: #888; }
             <div id="stats-bar" class="stats-bar"></div>
 
         </div>
-            <div id="score-filter-container">
+            <div class="slider-wrap">
+            <div class="score-filter">
                 <span id="range-display">نمایش همه کتاب‌ها</span>
                 <div id="score-slider"></div>
             </div>
+        </div>
     </div>
 </div>
 
@@ -513,12 +528,16 @@ if (scoreSlider) {
         const minLabel = minScore === 0 ? 'بدون امتیاز' : `${minScore} ستاره`;
         const maxLabel = maxScore === 0 ? 'بدون امتیاز' : `${maxScore} ستاره`;
         
-        if (minScore === 0 && maxScore === 0) {
-            rangeDisplay.textContent = 'نمایش کتاب‌های بدون امتیاز';
+        if (minScore === maxScore) {
+            if (minScore === 0) {
+                rangeDisplay.textContent = 'نمایش کتاب‌های بدون امتیاز';
+            } else {
+                rangeDisplay.textContent = `نمایش کتاب‌های ${minLabel}`;
+            }
         } else {
             rangeDisplay.textContent = `نمایش کتاب‌های ${minLabel} تا ${maxLabel}`;
         }
-        
+
         apply();
     });
 
